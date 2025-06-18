@@ -45,11 +45,11 @@ public class MathController {
         if(!isNumeric(number1) || !isNumeric(number2)) throw new UnsuportedMathOperationException("Please set a numeric value!!");
         return (convertToDouble(number1) * convertToDouble(number2)) / 2;
     }
-    @RequestMapping("/sqr/{number1}")
-    public Double sqr(
+    @RequestMapping("/sqrt/{number1}")
+    public Double sqrt(
             @PathVariable("number1") String number1) {
         if(!isNumeric(number1)) throw new UnsuportedMathOperationException("Please set a numeric value!!");
-        return convertToDouble(number1) * convertToDouble(number1);
+        return Math.sqrt(convertToDouble(number1));
     }
 
     private Double convertToDouble(String strNumber) {
