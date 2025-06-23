@@ -1,9 +1,9 @@
 package br.com.gui.controllers;
 
+import br.com.gui.dto.PersonDTO;
 import br.com.gui.model.Person;
 import br.com.gui.services.PersonServices;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -17,23 +17,24 @@ public class PersonController {
     @Autowired
     private PersonServices service;
 
-    @GetMapping(value = "/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
-    public Person findById(@PathVariable("id") Long id) {
-        return service.findById(id);
-    }
-
     @GetMapping(produces = MediaType.APPLICATION_JSON_VALUE)
-    public List<Person> findById() {
+    public List<PersonDTO> findAll() {
         return service.findAll();
     }
 
+    @GetMapping(value = "/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
+    public PersonDTO findById(@PathVariable("id") Long id) {
+        return service.findById(id);
+    }
+
+
     @PostMapping(produces = MediaType.APPLICATION_JSON_VALUE, consumes = MediaType.APPLICATION_JSON_VALUE)
-    public Person create(@RequestBody Person person) {
+    public PersonDTO create(@RequestBody PersonDTO person) {
         return service.create(person);
     }
 
     @PutMapping(produces = MediaType.APPLICATION_JSON_VALUE, consumes = MediaType.APPLICATION_JSON_VALUE)
-    public Person update(@RequestBody Person person) {
+    public PersonDTO update(@RequestBody PersonDTO person) {
         return service.update(person);
     }
 
