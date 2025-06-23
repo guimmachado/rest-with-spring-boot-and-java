@@ -3,6 +3,7 @@ package br.com.gui.unitetests.mapper.mocks;
 import java.util.ArrayList;
 import java.util.List;
 
+import br.com.gui.dto.v1.PersonDTO;
 import br.com.gui.model.Person;
 
 public class MockPerson {
@@ -12,7 +13,7 @@ public class MockPerson {
         return mockEntity(0);
     }
     
-    public br.com.gui.dto.PersonDTO mockDTO() {
+    public PersonDTO mockDTO() {
         return mockDTO(0);
     }
     
@@ -24,8 +25,8 @@ public class MockPerson {
         return personDTOS;
     }
 
-    public List<br.com.gui.dto.PersonDTO> mockDTOList() {
-        List<br.com.gui.dto.PersonDTO> personDTOS = new ArrayList<>();
+    public List<PersonDTO> mockDTOList() {
+        List<PersonDTO> personDTOS = new ArrayList<>();
         for (int i = 0; i < 14; i++) {
             personDTOS.add(mockDTO(i));
         }
@@ -42,8 +43,8 @@ public class MockPerson {
         return personDTO;
     }
 
-    public br.com.gui.dto.PersonDTO mockDTO(Integer number) {
-        br.com.gui.dto.PersonDTO personDTO = new br.com.gui.dto.PersonDTO();
+    public PersonDTO mockDTO(Integer number) {
+        PersonDTO personDTO = new PersonDTO();
         personDTO.setAddress("Address Test" + number);
         personDTO.setFirstName("First Name Test" + number);
         personDTO.setGender(((number % 2)==0) ? "Male" : "Female");
