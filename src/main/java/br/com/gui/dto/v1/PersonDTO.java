@@ -1,19 +1,29 @@
 package br.com.gui.dto.v1;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonPropertyOrder;
+
 import java.io.Serializable;
 import java.util.Objects;
 
+@JsonPropertyOrder({"id", "Endereco", "Primeiro Nome", "Ultimo Nome", "Genero"})
 public class PersonDTO implements Serializable {
     private static final long serialVersionUID = 1L;
 
     private Long id;
 
+    @JsonProperty("Primeiro Nome")
     private String firstName;
 
+    @JsonProperty("Ultimo Nome")
     private String lastName;
 
+    @JsonProperty("Endereco")
     private String address;
 
+    @JsonIgnore
+    @JsonProperty("Genero")
     private String gender;
 
     public PersonDTO() {}

@@ -1,13 +1,11 @@
 package br.com.gui.services;
 
 import br.com.gui.dto.v1.PersonDTO;
-import br.com.gui.dto.v2.PersonDTOV2;
 import br.com.gui.exception.ResourceNotFoundException;
 
 import static br.com.gui.mapper.ObjectMapper.parseListObjects;
 import static br.com.gui.mapper.ObjectMapper.parseObject;
 
-import br.com.gui.mapper.custom.PersonMapper;
 import br.com.gui.model.Person;
 import br.com.gui.repositories.PersonRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,9 +23,6 @@ public class PersonServices {
     @Autowired
     PersonRepository repo;
 
-    @Autowired
-    PersonMapper converter;
-
     public List<PersonDTO> findAll() {
         logger.info("Finding all persons!");
         return parseListObjects(repo.findAll(), PersonDTO.class);
@@ -43,12 +38,6 @@ public class PersonServices {
         logger.info("Creating one person!");
         var entity = parseObject(person, Person.class);
         return parseObject(repo.save(entity), PersonDTO.class);
-    }
-
-    public PersonDTOV2 createV2(PersonDTOV2 person) {
-        logger.info("Creating one person!");
-        var entity = converter.convertDTOToEntity(person);
-        return converter.convertEntityToDTO(repo.save(entity));
     }
 
     public PersonDTO update(PersonDTO person) {
