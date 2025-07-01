@@ -10,7 +10,14 @@ public class GenderSerializer extends JsonSerializer<String> {
 
     @Override
     public void serialize(String gender, JsonGenerator gen, SerializerProvider serializerProvider) throws IOException {
-        String formatedGender = "Male".equals(gender) ? "M" : "F";
-        gen.writeString(formatedGender);
+        if ("Male".equalsIgnoreCase(gender)) {
+            gen.writeString("M");
+        } else if ("Female".equalsIgnoreCase(gender)) {
+            gen.writeString("F");
+        } else if (gender == null) {
+            gen.writeNull();
+        } else {
+            gen.writeString(gender); // fallback: write as is
+        }
     }
 }
