@@ -1,6 +1,7 @@
 package br.com.gui.services;
 
 import br.com.gui.dto.v1.PersonDTO;
+import br.com.gui.exception.RequiredObjectIsNullException;
 import br.com.gui.model.Person;
 import br.com.gui.repositories.PersonRepository;
 import br.com.gui.unitetests.mapper.mocks.MockPerson;
@@ -153,6 +154,15 @@ class PersonServicesTest {
     }
 
     @Test
+    void createWithNullPerson() {
+        Exception exception = assertThrows(RequiredObjectIsNullException.class, () -> {
+            service.create(null);
+        });
+
+        assertTrue(exception.getMessage().contains("It is not allowed to persist a null object!"));
+    }
+
+    @Test
     void update() {
         Person person = input.mockEntity(1);
         Person persisted = person;
@@ -212,6 +222,15 @@ class PersonServicesTest {
         assertEquals("First Name Test1", result.getFirstName());
         assertEquals("Last Name Test1", result.getLastName());
         assertEquals("Female", result.getGender());
+    }
+
+    @Test
+    void updateWithNullPerson() {
+        Exception exception = assertThrows(RequiredObjectIsNullException.class, () -> {
+            service.update(null);
+        });
+
+        assertTrue(exception.getMessage().contains("It is not allowed to persist a null object!"));
     }
 
     @Test

@@ -2,6 +2,7 @@ package br.com.gui.services;
 
 import br.com.gui.controllers.PersonController;
 import br.com.gui.dto.v1.PersonDTO;
+import br.com.gui.exception.RequiredObjectIsNullException;
 import br.com.gui.exception.ResourceNotFoundException;
 
 import static br.com.gui.mapper.ObjectMapper.parseListObjects;
@@ -42,6 +43,8 @@ public class PersonServices {
 
 
     public PersonDTO create(PersonDTO person) {
+        if(person == null) throw new RequiredObjectIsNullException();
+
         logger.info("Creating one person!");
         var entity = parseObject(person, Person.class);
         var dto = parseObject(repo.save(entity), PersonDTO.class);
@@ -50,6 +53,8 @@ public class PersonServices {
     }
 
     public PersonDTO update(PersonDTO person) {
+        if(person == null) throw new RequiredObjectIsNullException();
+
         logger.info("Updating one person!");
         Person entity = repo.findById(person.getId()).orElseThrow(() -> new ResourceNotFoundException("No records found for this id!"));
 
