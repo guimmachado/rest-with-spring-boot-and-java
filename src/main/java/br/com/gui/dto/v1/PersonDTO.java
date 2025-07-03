@@ -6,14 +6,12 @@ package br.com.gui.dto.v1;
 
 import br.com.gui.serializer.GenderSerializer;
 import com.fasterxml.jackson.annotation.JsonFilter;
-import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import jakarta.xml.bind.annotation.XmlRootElement;
 import org.springframework.hateoas.RepresentationModel;
 
 import java.io.Serializable;
-import java.util.Date;
 import java.util.Objects;
 
 //@JsonPropertyOrder({"id", "Endereco", "Primeiro Nome", "Ultimo Nome", "Genero"})1
