@@ -1,10 +1,11 @@
-package br.com.gui.services;
+package br.com.gui.unittests.services;
 
 import br.com.gui.dto.v1.PersonDTO;
 import br.com.gui.exception.RequiredObjectIsNullException;
 import br.com.gui.model.Person;
 import br.com.gui.repositories.PersonRepository;
-import br.com.gui.unitetests.mapper.mocks.MockPerson;
+import br.com.gui.services.PersonServices;
+import br.com.gui.unittests.mapper.mocks.MockPerson;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.TestInstance;
