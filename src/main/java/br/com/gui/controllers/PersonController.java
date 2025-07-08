@@ -11,7 +11,6 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
-// @CrossOrigin(origins = "http://localhost:8080")
 @RestController
 @RequestMapping("/api/person/v1")
 @Tag(name = "People", description = "Endpoints for managing people")
@@ -26,18 +25,15 @@ public class PersonController implements PersonControllerDocs {
         return service.findAll();
     }
 
-    //@CrossOrigin(origins = "http://localhost:8080")
     @GetMapping(value = "/{id}", produces = {MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE})
     @Override
     public PersonDTO findById(@PathVariable("id") Long id) {
         var person = service.findById(id);
-//        person.setBirthDay(new Date());
         person.setPhoneNumber("+55 (11) 999999999");
         person.setSensitiveData("Foo Bar");
         return person;
     }
 
-    //@CrossOrigin(origins = {"http://localhost:8080", ""})
     @PostMapping(produces = {MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE}, consumes = {MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE})
     @Override
     public PersonDTO create(@RequestBody PersonDTO person) {
@@ -48,6 +44,12 @@ public class PersonController implements PersonControllerDocs {
     @Override
     public PersonDTO update(@RequestBody PersonDTO person) {
         return service.update(person);
+    }
+
+    @PatchMapping(value = "/{id}", produces = {MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE})
+    @Override
+    public PersonDTO disablePerson(@PathVariable("id") Long id) {
+        return service.disablePerson(id);
     }
 
     @DeleteMapping(value = "/{id}")
